@@ -1,6 +1,6 @@
 pandas
 Counter
-Bio.SeqUtils
+biopython
 molecular_weight
 docx
 Document
