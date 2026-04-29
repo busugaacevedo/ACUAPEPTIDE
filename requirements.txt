@@ -1,6 +1,5 @@
 pandas
 Counter
-defaultdict
 Bio.SeqUtils
 molecular_weight
 docx
