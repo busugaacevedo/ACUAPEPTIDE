@@ -1,5 +1,4 @@
 pandas
-collections
 Counter
 defaultdict
 Bio.SeqUtils
