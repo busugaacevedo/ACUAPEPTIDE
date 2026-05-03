@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 # Importamos tu motor de Word
-from ACUAPEPTIDE_code import create_word
+from ACUAPEPTIDE_v2 import create_word
 #from v4_ACUA import create_word
 st.set_page_config(page_title="ACUAPEPTIDE")
 
