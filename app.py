@@ -32,9 +32,9 @@ with st.expander("📝 Información del Proyecto", expanded=True):
 # --- SECCIÓN 2: CONFIGURACIÓN DE QUÍMICA ---
 with st.expander("🧪 Configuración de Reactivos"):
     deprotection = st.text_input("Desprotección", "Piperidina 20% TritonX100 1% en DMF")
-    simple = st.text_input("Activador Simple", "AA + TBTU + OXYMA + DIEA")
-    doble = st.text_input("Activador Doble", "AA + HBTU + OXYMA + DIEA")
-    triple = st.text_input("Activador Triple", "AA + HCTU(DIC) + OXYMA + DIEA")
+    simple = st.text_input("Activador Simple", "AA + TBTU + OXIMA + DIEA")
+    doble = st.text_input("Activador Doble", "AA + HBTU + OXIMA + DIEA")
+    triple = st.text_input("Activador Triple", "AA + HCTU(DIC) + OXIMA + DIEA")
 
 # --- SECCIÓN 3: CARGA DE DATOS ---
 st.subheader("📂 Cargar Secuencias")
@@ -90,4 +90,4 @@ if uploaded_file is not None:
             )
         except Exception as e:
             st.error(f"Error al procesar: {e}")
-            st.info("Asegúrate de que el Excel tenga las columnas (no importa el orden):  \n| Numero bolsa | Secuencia | Familia | Nota |")
+            st.info("Asegúrate de que el Excel tenga las columnas:  \n- Cuidado con los espacios en blanco  \n Sin tildes  \nNo importa el orden.  \n|Numero bolsa|Secuencia|Familia|Nota|")
