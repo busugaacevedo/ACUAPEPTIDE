@@ -71,7 +71,8 @@ if uploaded_file is not None:
             # Extraer listas necesarias para tu función create_word
             bolsas_list 	= df["Numero bolsa"].tolist()
             peptides_list 	= df["Secuencia"].tolist()
-            family_list 	= df["Familia"].tolist()
+            family_list 	     = df["Familia"].tolist()
+            family_list 	     = df["Familia"].fillna.tolist()
             notes_list 		= df["Nota"].tolist()
             notes_list 		= df["Nota"].fillna("").tolist()
             
