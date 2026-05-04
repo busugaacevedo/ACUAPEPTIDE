@@ -47,7 +47,7 @@ uploaded_file = st.file_uploader("Sube tu Excel (.xlsx)", type=["xlsx"])
 
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
-    columnas_requeridas = ["Numero bolsa", "Secuencia", "Familia"]
+    columnas_requeridas = ["Numero bolsa", "Secuencia", "Familia", "Nota"]
     faltantes = [col for col in columnas_requeridas if col not in df.columns]
     if faltantes:
             st.error(f"❌ El archivo no contiene las columnas obligatorias: {', '.join(faltantes)}")
