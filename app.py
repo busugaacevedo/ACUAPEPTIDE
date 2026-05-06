@@ -41,7 +41,7 @@ st.subheader("📂 Cargar Secuencias")
 st.info("""
 El archivo Excel (.xlsx) debe contener exactamente estas columnas (no importa el orden)
 
-¡¡Cuidado con los espaciadores!!
+¡¡Cuidado con los espaciadores y las mayúsculas!!
 
 \t|  Numero bolsa  |  Secuencia  |  Familia  |  Nota  |\n""")
 
