@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 # Importamos tu motor de Word
-from ACUAPEPTIDE_v2 import create_word
-#from v4_ACUA import create_word
+from ACUAPEPTIDE_v3 import create_word
+#from v6_ACUA import create_word
 st.set_page_config(page_title="ACUAPEPTIDE")
 
 col1, col2, col3 = st.columns([0.05,1,0.05])
@@ -23,15 +23,15 @@ st.caption("***Version 2026. Creada por: Brandon Usuga-Acevedo***👨🏾‍🔬
 with st.expander("📝 Información del Proyecto", expanded=True):
     col1, col2 = st.columns(2)
     with col1:
-        nameProject = st.text_input("Nombre del Proyecto", value="S220426")
-        nameResin = st.text_input("Nombre de la Resina", value="RinkAmide")
+        nameProject = st.text_input("Nombre del Proyecto", value="S050526")
+        nameResin = st.text_input("Nombre de la Resina", value="Rink Amida")
     with col2:
         massResin = st.number_input("Masa de Resina (mg)", value=40)
         StResin = st.number_input("Sustitución (mmol/g)", value=0.67, format="%.2f")
 
 # --- SECCIÓN 2: CONFIGURACIÓN DE QUÍMICA ---
 with st.expander("🧪 Configuración de Reactivos"):
-    deprotection = st.text_input("Desprotección", "Piperidina 20% TritonX100 1% en DMF")
+    deprotection = st.text_input("Desprotección", "Piperidina 20% Triton 1%")
     simple = st.text_input("Activador Simple", "AA + TBTU + OXIMA + DIEA")
     doble = st.text_input("Activador Doble", "AA + HBTU + OXIMA + DIEA")
     triple = st.text_input("Activador Triple", "AA + HCTU(DIC) + OXIMA + DIEA")
@@ -39,18 +39,20 @@ with st.expander("🧪 Configuración de Reactivos"):
 # --- SECCIÓN 3: CARGA DE DATOS ---
 st.subheader("📂 Cargar Secuencias")
 st.info("""
-El archivo Excel (.xlsx) debe contener exactamente estas columnas (no importa el orden):
+El archivo Excel (.xlsx) debe contener exactamente estas columnas (no importa el orden)
 
-\t Numero bolsa  |  Secuencia  |  Familia  |  Nota\n""")
+¡¡Cuidado con los espaciadores!!
+
+\t|  Numero bolsa  |  Secuencia  |  Familia  |  Nota  |\n""")
 
 uploaded_file = st.file_uploader("Sube tu Excel (.xlsx)", type=["xlsx"])
 
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
-    columnas_requeridas = ["Numero bolsa", "Secuencia", "Familia", "Nota"]
+    columnas_requeridas = ["Numero bolsa", "Secuencia", "Familia"]
     faltantes = [col for col in columnas_requeridas if col not in df.columns]
     if faltantes:
-            st.error(f"❌ El archivo no contiene las columnas obligatorias: {', '.join(faltantes)}")
+            st.error(f"❌ Existe un error en las columnas obligatorias: {', '.join(faltantes)}")
             st.stop()
     st.success("✅ Archivo cargado correctamente\n")
 
@@ -60,6 +62,7 @@ if uploaded_file is not None:
     if not duplicados.empty:
         bolsas_rep = duplicados["Numero bolsa"].unique()
         st.warning("⚠️ Advertencia: Hay números de bolsa repetidos")
+        st.error(f"❌ Bolsas duplicadas: {', '.join(map(str, bolsas_rep))}")
         st.stop()
 
     st.write("Vista previa de péptidos:")
@@ -69,10 +72,10 @@ if uploaded_file is not None:
     if st.button("🚀 Generar Documento de Síntesis"):
         try:
             # Extraer listas necesarias para tu función create_word
-            bolsas_list 	= df["Numero bolsa"].tolist()
+            bolsas_list 	= df["Numero bolsa"].astype(str).tolist()
             peptides_list 	= df["Secuencia"].tolist()
-            family_list 	     = df["Familia"].tolist()
-            family_list 	     = df["Familia"].fillna("").tolist()
+            family_list 	= df["Familia"].tolist()
+            family_list 	= df["Familia"].fillna("").tolist()
             notes_list 		= df["Nota"].tolist()
             notes_list 		= df["Nota"].fillna("").tolist()
             
@@ -90,4 +93,4 @@ if uploaded_file is not None:
             )
         except Exception as e:
             st.error(f"Error al procesar: {e}")
-            st.info("Asegúrate de que el Excel tenga las columnas:  \n- Cuidado con los espacios en blanco  \n Sin tildes  \nNo importa el orden.  \n|Numero bolsa|Secuencia|Familia|Nota|")
+            st.info("Asegúrate de que el Excel tenga las columnas (no importa el orden):  \n| Numero bolsa | Secuencia | Familia | Nota |")
