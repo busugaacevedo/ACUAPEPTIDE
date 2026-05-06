@@ -19,6 +19,19 @@ with col2: #La columna del centro
 
 st.caption("***Version 2026. Creada por: Brandon Usuga-Acevedo***👨🏾‍🔬")
 
+def mostrar_intro():
+#    st.title("🧪 Acuapeptide System")
+    st.markdown("""
+    Bienvenid@ al generador de protocolos.
+    Esta herramienta automatiza la creación del documento
+    para la síntesis de péptidos en fase sólida.  \t👉 Accede al trabajo de referencia:  \n
+      **['Tea Bags for Fmoc Solid-Phase Peptide Synthesis:
+       An Example of Circular Economy'](https://www.mdpi.com/1420-3049/26/16/5035)**
+    """)
+    #st.info("Configuración actual: Orden numérico y estilo compacto (No Spacing).")
+    st.divider()
+mostrar_intro()
+
 # --- SECCIÓN 1: INFORMACIÓN GENERAL ---
 with st.expander("📝 Información del Proyecto", expanded=True):
     col1, col2 = st.columns(2)
