@@ -274,7 +274,7 @@ def write_couplings(doc, cycles, bolsas, peptides, simple, doble, triple, despro
             p_out = doc.add_paragraph()
             tab_stops = p_out.paragraph_format.tab_stops
             tab_stops.add_tab_stop(Mm(30))
-            out_sorted·=·sorted(map(int,·ending))
+            out_sorted = sorted(map(int, ending))
             out_str = "  ".join(map(str, out_sorted))
             run = p_out.add_run(f"OUT:\t{out_str}")
             run.bold = True
